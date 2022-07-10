@@ -1,0 +1,11 @@
+.CaloriesResult {
+    width: 60%;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #A7A6A1;
+    border-radius: 15px;
+}
+
+.red {
+    color: #C92A2A;
+}

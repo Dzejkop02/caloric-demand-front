@@ -8,5 +8,5 @@ export const caloriesCalculator = (data: getDataResponse): number => {
     const eatenCaloriesPerDay = data.map(day => day.kcal).reduce((a, b) => (a as number) + (b as number), 0) as number / 14;
     const caloriesChange = (difference * 3500) / 0.5 / 7;
 
-    return eatenCaloriesPerDay + caloriesChange;
+    return +(eatenCaloriesPerDay + caloriesChange).toFixed();
 };

@@ -19,6 +19,4 @@ export const CaloriesField = (props: Props) => {
             <h4>{props.day}</h4>
         </td>
     }
-
-
 };

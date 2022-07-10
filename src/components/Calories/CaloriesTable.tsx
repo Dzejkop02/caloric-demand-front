@@ -2,6 +2,8 @@ import React from 'react';
 import { getDataResponse } from 'types';
 import {CaloriesRow} from "./CaloriesRow";
 
+import './CaloriesTable.css';
+
 interface Props {
     data: getDataResponse;
 }

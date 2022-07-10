@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {getDataResponse} from 'types';
 import {CaloriesTable} from "./CaloriesTable";
 
+import './CaloriesList.css';
+
 export const CaloriesList = () => {
     const [data, setData] = useState<getDataResponse | null>(null);
 
@@ -19,7 +21,7 @@ export const CaloriesList = () => {
     }
 
     return <>
-        <h2>Accurate Caloric Demand Calculator</h2>
+        <h1>Accurate Caloric Demand Calculator</h1>
         <CaloriesTable
             data={data}
         />

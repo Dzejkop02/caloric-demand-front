@@ -5,6 +5,7 @@ import {caloriesCalculator} from "../../utils/calories-calculator";
 import {CaloriesResult} from "../CaloriesResult/CaloriesResult";
 
 import './CaloriesList.css';
+import {ClearDataBtn} from "../ClearDataBtn/ClearDataBtn";
 
 export const CaloriesList = () => {
     const [data, setData] = useState<getDataResponse | null>(null);
@@ -39,5 +40,6 @@ export const CaloriesList = () => {
         <CaloriesResult
             result={result}
         />
+        <ClearDataBtn/>
     </>;
 };

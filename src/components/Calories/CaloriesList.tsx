@@ -3,17 +3,27 @@ import {getDataResponse} from 'types';
 import {CaloriesTable} from "./CaloriesTable";
 
 import './CaloriesList.css';
+import {caloriesCalculator} from "../../utils/calories-calculator";
 
 export const CaloriesList = () => {
     const [data, setData] = useState<getDataResponse | null>(null);
+    const [result, setResult] = useState<number | null>(null);
 
-    const getData = async () => {
+    const refreshData = async () => {
         const res = await fetch('http://localhost:3001/data/');
-        setData(await res.json());
+        const d = await res.json();
+
+        setData(d);
+
+        if (d.length === 14) {
+            setResult(caloriesCalculator(d))
+        } else {
+            setResult(null);
+        }
     }
 
     useEffect(() => {
-        getData();
+        refreshData();
     }, []);
 
     if (data === null) {

@@ -72,6 +72,6 @@ export const CaloriesList = () => {
                 onUpdateData={hideAddDataPopup}
             />
         }
-        <div className={`overlay ${overlayClass}`}></div>
+        <div className={`overlay ${overlayClass}`} onClick={hideAddDataPopup}></div>
     </>;
 };

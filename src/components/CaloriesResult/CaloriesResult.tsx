@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const CaloriesResult = (props: Props) => {
-    if (!props.result) {
+    if (!props.result && props.result !== 0) {
         return <div className="CaloriesResult red">
             Enter data in all days to see your result.
         </div>;

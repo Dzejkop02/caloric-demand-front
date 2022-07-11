@@ -40,6 +40,8 @@ export const CaloriesList = () => {
         <CaloriesResult
             result={result}
         />
-        <ClearDataBtn/>
+        <ClearDataBtn
+            onClearData={refreshData}
+        />
     </>;
 };

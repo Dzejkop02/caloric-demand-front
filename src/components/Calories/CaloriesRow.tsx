@@ -5,6 +5,7 @@ import {CaloriesField} from "./CaloriesField";
 interface Props {
     week: number;
     data: getDataResponse;
+    onAddData: (day: number, kcal: number | '', weight: number | '') => void;
 }
 
 export const CaloriesRow = (props: Props) => {
@@ -16,9 +17,10 @@ export const CaloriesRow = (props: Props) => {
             <CaloriesField
                 key={day.day}
                 day={day.day}
-                kcal={day.kcal}
-                weight={day.weight}
+                kcal={day.kcal ?? ''}
+                weight={day.weight ?? ''}
                 hasInfo={day.hasInfo}
+                onAddData={props.onAddData}
             />
             )
         )}

@@ -6,10 +6,17 @@ import {CaloriesResult} from "../CaloriesResult/CaloriesResult";
 
 import './CaloriesList.css';
 import {ClearDataBtn} from "../ClearDataBtn/ClearDataBtn";
+import {UpdateDataPopup} from "../UpdateDataPopup/UpdateDataPopup";
 
 export const CaloriesList = () => {
     const [data, setData] = useState<getDataResponse | null>(null);
     const [result, setResult] = useState<number | null>(null);
+    const [overlayClass, setOverlayClass] = useState<'hidden' | ''>('hidden');
+
+    // data for popup
+    const [selectedDay, setSelectedDay] = useState<number>(1);
+    const [kcal, setKcal] = useState<number | ''>('');
+    const [weight, setWeight] = useState<number | ''>('');
 
     const refreshData = async () => {
         const res = await fetch('http://localhost:3001/data/');
@@ -24,6 +31,18 @@ export const CaloriesList = () => {
         }
     }
 
+    const showAddDataPopup = (day: number, kcal: number | '', weight: number | '') => {
+        setSelectedDay(day);
+        setKcal(kcal);
+        setWeight(weight);
+        setOverlayClass('');
+    };
+
+    const hideAddDataPopup = async () => {
+        await refreshData();
+        setOverlayClass('hidden');
+    }
+
     useEffect(() => {
         refreshData();
     }, []);
@@ -36,6 +55,7 @@ export const CaloriesList = () => {
         <h1>Accurate Caloric Demand Calculator</h1>
         <CaloriesTable
             data={data}
+            onAddData={showAddDataPopup}
         />
         <CaloriesResult
             result={result}
@@ -43,5 +63,15 @@ export const CaloriesList = () => {
         <ClearDataBtn
             onClearData={refreshData}
         />
+        {
+            !overlayClass &&
+            <UpdateDataPopup
+                day={selectedDay}
+                kcal={kcal}
+                weight={weight}
+                onUpdateData={hideAddDataPopup}
+            />
+        }
+        <div className={`overlay ${overlayClass}`}></div>
     </>;
 };

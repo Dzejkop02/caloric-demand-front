@@ -6,6 +6,7 @@ import './CaloriesTable.css';
 
 interface Props {
     data: getDataResponse;
+    onAddData: (day: number, kcal: number | '', weight: number | '') => void;
 }
 
 export const CaloriesTable = (props: Props) => (
@@ -14,10 +15,12 @@ export const CaloriesTable = (props: Props) => (
             <CaloriesRow
                 week={1}
                 data={props.data}
+                onAddData={props.onAddData}
             />
             <CaloriesRow
                 week={2}
                 data={props.data}
+                onAddData={props.onAddData}
             />
         </tbody>
     </table>

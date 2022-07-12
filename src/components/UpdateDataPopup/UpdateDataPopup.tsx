@@ -60,8 +60,8 @@ export const UpdateDataPopup = (props: Props) => {
             />
 
             <div className="buttons">
-                <button type="submit" className="btn">Save</button>
                 <button type="button" className="btn delete-btn" onClick={deleteDay}>Delete day {props.day}</button>
+                <button type="submit" className="btn">Save</button>
             </div>
         </form>
     </div>

@@ -1,6 +1,6 @@
-import { getDataResponse } from "types";
+import { OneFilteredDay } from "types";
 
-export const caloriesCalculator = (data: getDataResponse): number => {
+export const caloriesCalculator = (data: OneFilteredDay[]): number => {
     const weightWeek1 = data.filter(day => day.day < 8).map(day => day.weight).reduce((a, b) => (a as number) + (b as number), 0) as number / 7;
     const weightWeek2 = data.filter(day => day.day >= 8).map(day => day.weight).reduce((a, b) => (a as number) + (b as number), 0) as number / 7;
     const difference = weightWeek1 - weightWeek2;

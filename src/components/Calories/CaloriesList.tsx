@@ -24,8 +24,8 @@ export const CaloriesList = () => {
 
         setData(d);
 
-        if (d.every(item => item.hasInfo)) {
-            setResult(caloriesCalculator(d))
+        if (d.ok && d.data.every(item => item.hasInfo)) {
+            setResult(caloriesCalculator(d.data))
         } else {
             setResult(null);
         }
@@ -51,10 +51,14 @@ export const CaloriesList = () => {
         return null;
     }
 
+    if (!data.ok) {
+        return <p>Error getting data.</p>;
+    }
+
     return <>
         <h1>Accurate Caloric Demand Calculator</h1>
         <CaloriesTable
-            data={data}
+            data={data.data}
             onAddData={showAddDataPopup}
         />
         <CaloriesResult

@@ -12,11 +12,12 @@ interface Props {
 export const UpdateDataPopup = (props: Props) => {
     const [kcal, setKcal] = useState<string>(props.kcal);
     const [weight, setWeight] = useState<string>(props.weight);
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const setData = async (e: FormEvent) => {
         e.preventDefault();
 
-        await fetch('http://localhost:3001/data/', {
+        const res = await fetch('http://localhost:3001/data/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +29,16 @@ export const UpdateDataPopup = (props: Props) => {
             }),
         });
 
-        props.onUpdateData();
+        const data = await res.json();
+
+        if (!data.ok) {
+            setErrorMessage(data.message);
+        }
+
+        else {
+            setErrorMessage('');
+            props.onUpdateData();
+        }
     };
 
     const deleteDay = async () => {
@@ -58,6 +68,8 @@ export const UpdateDataPopup = (props: Props) => {
                 value={weight}
                 onChange={e => setWeight(e.target.value)}
             />
+
+            {errorMessage && <p className="error">{errorMessage}</p>}
 
             <div className="buttons">
                 <button type="button" className="btn delete-btn" onClick={deleteDay}>Delete day {props.day}</button>

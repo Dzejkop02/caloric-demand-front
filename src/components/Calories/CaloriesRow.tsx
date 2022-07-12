@@ -1,10 +1,10 @@
 import React from 'react';
-import { getDataResponse } from 'types';
+import { OneFilteredDay } from 'types';
 import {CaloriesField} from "./CaloriesField";
 
 interface Props {
     week: number;
-    data: getDataResponse;
+    data: OneFilteredDay[];
     onAddData: (day: number, kcal: number | '', weight: number | '') => void;
 }
 

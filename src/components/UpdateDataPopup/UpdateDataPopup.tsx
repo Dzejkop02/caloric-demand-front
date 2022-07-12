@@ -4,14 +4,14 @@ import './UpdateDataPopup.css';
 
 interface Props {
     day: number;
-    kcal: number | '';
-    weight: number | '';
+    kcal: string;
+    weight: string;
     onUpdateData: () => void;
 }
 
 export const UpdateDataPopup = (props: Props) => {
-    const [kcal, setKcal] = useState<number | ''>(props.kcal);
-    const [weight, setWeight] = useState<number | ''>(props.weight);
+    const [kcal, setKcal] = useState<string>(props.kcal);
+    const [weight, setWeight] = useState<string>(props.weight);
 
     const setData = async (e: FormEvent) => {
         e.preventDefault();
@@ -23,8 +23,8 @@ export const UpdateDataPopup = (props: Props) => {
             },
             body: JSON.stringify({
                 day: props.day,
-                kcal,
-                weight,
+                kcal: Number(kcal),
+                weight: Number(weight),
             }),
         });
 
@@ -48,7 +48,7 @@ export const UpdateDataPopup = (props: Props) => {
                 id="kcal"
                 type="number"
                 value={kcal}
-                onChange={e => setKcal(Number(e.target.value))}
+                onChange={e => setKcal(e.target.value)}
             />
 
             <label htmlFor="weight">Your weight: (20-300)</label>
@@ -56,7 +56,7 @@ export const UpdateDataPopup = (props: Props) => {
                 id="weight"
                 type="number"
                 value={weight}
-                onChange={e => setWeight(Number(e.target.value))}
+                onChange={e => setWeight(e.target.value)}
             />
 
             <div className="buttons">

@@ -67,8 +67,8 @@ export const CaloriesList = () => {
             !overlayClass &&
             <UpdateDataPopup
                 day={selectedDay}
-                kcal={kcal}
-                weight={weight}
+                kcal={String(kcal)}
+                weight={String(weight)}
                 onUpdateData={hideAddDataPopup}
             />
         }

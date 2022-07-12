@@ -1,0 +1,76 @@
+.UpdateDataPopup {
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+
+    background-color: #F9F5F0;
+    padding: 168px;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    font-size: 24px;
+}
+
+label {
+    margin-top: 24px;
+    font-size: 20px;
+}
+
+input {
+    margin-top: 12px;
+    padding: 1.15em;
+    border-radius: 5px;
+}
+
+.buttons {
+    margin-top: 48px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    box-sizing: border-box;
+    background-color: transparent;
+    padding: 15px 30px;
+    border: 1px solid #323130;
+    cursor: pointer;
+    color: #323130;
+    border-radius: 10px;
+    transition: 0.25s;
+    font-size: 14px;
+    width: 150px;
+}
+
+.btn:hover {
+    background-color: #323130;
+    border: 1px solid black;
+    color: #F9F5F0;
+}
+
+.delete-btn {
+    border: 1px solid #CE3F3F;
+    color: #CE3F3F;
+}
+
+.delete-btn:hover {
+    background-color: #CE3F3F;
+    border: 1px solid black;
+    color: black;
+}
+
+.error {
+    color: #CE3F3F;
+    margin-bottom: 0;
+    margin-top: 24px;
+}

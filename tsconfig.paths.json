@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "types": [
+        "../caloric-demand-back/src/interfaces"
+      ]
+    }
+  }
+}

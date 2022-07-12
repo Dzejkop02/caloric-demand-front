@@ -18,13 +18,12 @@ export const UpdateDataPopup = (props: Props) => {
     const setData = async (e: FormEvent) => {
         e.preventDefault();
 
-        const res = await fetch('http://localhost:3001/data/', {
+        const res = await fetch(`http://localhost:3001/data/${props.day}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                day: props.day,
                 kcal: Number(kcal),
                 weight: Number(weight),
             }),

@@ -1,4 +1,5 @@
 import React, {useState, FormEvent} from 'react';
+import { getDataResponse } from 'types';
 
 import './UpdateDataPopup.css';
 
@@ -6,7 +7,7 @@ interface Props {
     day: number;
     kcal: string;
     weight: string;
-    onUpdateData: () => void;
+    onUpdateData: (responseData?: getDataResponse) => void;
 }
 
 export const UpdateDataPopup = (props: Props) => {
@@ -37,16 +38,16 @@ export const UpdateDataPopup = (props: Props) => {
 
         else {
             setErrorMessage('');
-            props.onUpdateData();
+            props.onUpdateData(data);
         }
     };
 
     const deleteDay = async () => {
-        await fetch(`http://localhost:3001/data/${props.day}`, {
+        const res = await fetch(`http://localhost:3001/data/${props.day}`, {
             method: 'DELETE',
         });
 
-        props.onUpdateData();
+        props.onUpdateData(await res.json());
     }
 
     return <div className="UpdateDataPopup">

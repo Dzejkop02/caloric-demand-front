@@ -18,9 +18,15 @@ export const CaloriesList = () => {
     const [kcal, setKcal] = useState<number | ''>('');
     const [weight, setWeight] = useState<number | ''>('');
 
-    const refreshData = async () => {
-        const res = await fetch('http://localhost:3001/data/');
-        const d = await res.json() as getDataResponse;
+    const refreshData = async (responseData?: getDataResponse) => {
+        let d;
+
+        if (responseData) {
+            d = responseData;
+        } else {
+            const res = await fetch('http://localhost:3001/data/');
+            d = await res.json() as getDataResponse;
+        }
 
         setData(d);
 
@@ -38,8 +44,8 @@ export const CaloriesList = () => {
         setOverlayClass('');
     };
 
-    const hideAddDataPopup = async () => {
-        await refreshData();
+    const hideAddDataPopup = async (responseData?: getDataResponse) => {
+        await refreshData(responseData);
         setOverlayClass('hidden');
     }
 
@@ -76,6 +82,6 @@ export const CaloriesList = () => {
                 onUpdateData={hideAddDataPopup}
             />
         }
-        <div className={`overlay ${overlayClass}`} onClick={hideAddDataPopup}></div>
+        <div className={`overlay ${overlayClass}`} onClick={() => hideAddDataPopup()}></div>
     </>;
 };

@@ -1,9 +1,10 @@
 import React from "react";
+import { getDataResponse } from "types";
 
 import './ClearDataBtn.css';
 
 interface Props {
-    onClearData: () => void;
+    onClearData: (responseData?: getDataResponse) => void;
 }
 
 export const ClearDataBtn = (props: Props) => {
@@ -18,7 +19,9 @@ export const ClearDataBtn = (props: Props) => {
             return;
         }
 
-        props.onClearData();
+        const data = await res.json();
+
+        props.onClearData(data);
     };
 
     return <div className="ClearDataBtn">

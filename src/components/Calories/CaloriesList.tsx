@@ -28,7 +28,9 @@ export const CaloriesList = (props: Props) => {
         if (responseData) {
             d = responseData;
         } else {
-            const res = await fetch('http://localhost:3001/data/');
+            const res = await fetch('http://localhost:3001/data/', {
+                credentials: 'include',
+            });
             props.onSendStatus(res.status);
             d = await res.json() as getDataResponse;
         }

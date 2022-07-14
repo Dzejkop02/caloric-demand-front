@@ -10,13 +10,15 @@ export const App = () => {
     const checkLoginStatus = (code: number) => {
         if (code === 401) {
             setLoggedIn(false);
+        } else {
+            setLoggedIn(true);
         }
     }
 
     return (
         <div className="App">
             {loggedIn && <CaloriesList onSendStatus={checkLoginStatus}/>}
-            <LoginBox loggedIn={loggedIn}/>
+            <LoginBox loggedIn={loggedIn} onSetLogIn={setLoggedIn}/>
         </div>
     );
 }

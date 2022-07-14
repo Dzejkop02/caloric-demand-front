@@ -25,3 +25,9 @@ button:hover {
 .success {
     color: green;
 }
+
+.loggedIn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}

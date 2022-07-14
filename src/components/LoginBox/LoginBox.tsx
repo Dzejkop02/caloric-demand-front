@@ -76,31 +76,44 @@ export const LoginBox = (props: Props) => {
         }
     };
 
-    return <div className="LoginBox">
-        <form onSubmit={login}>
-            <label htmlFor="username">Login: </label>
-            <input
-                id="username"
-                type="string"
-                value={username}
-                onChange={e => {setUsername(e.target.value); setErrorMessage(''); setSuccessMessage('')}}
-            />
+    const logOut = async () => {
+        await fetch('http://localhost:3001/auth/logout/', {
+            credentials: 'include',
+        });
 
-            <label htmlFor="pwd">Password: </label>
-            <input
-                id="pwd"
-                type="password"
-                value={pwd}
-                onChange={e => {setPwd(e.target.value); setErrorMessage(''); setSuccessMessage('')}}
-            />
+        props.onSetLogIn(false);
+    };
 
-            {errorMessage && <p className="error">{errorMessage}</p>}
-            {successMessage && <p className="success">{successMessage}</p>}
+    return !props.loggedIn ?
+        <div className="LoginBox">
+            <form onSubmit={login}>
+                <label htmlFor="username">Login: </label>
+                <input
+                    id="username"
+                    type="string"
+                    value={username}
+                    onChange={e => {setUsername(e.target.value); setErrorMessage(''); setSuccessMessage('')}}
+                />
 
-            <div className="buttons">
-                <button type="button" onClick={register}>Sign up</button>
-                <button>Log in</button>
-            </div>
-        </form>
-    </div>
+                <label htmlFor="pwd">Password: </label>
+                <input
+                    id="pwd"
+                    type="password"
+                    value={pwd}
+                    onChange={e => {setPwd(e.target.value); setErrorMessage(''); setSuccessMessage('')}}
+                />
+
+                {errorMessage && <p className="error">{errorMessage}</p>}
+                {successMessage && <p className="success">{successMessage}</p>}
+
+                <div className="buttons">
+                    <button type="button" onClick={register}>Sign up</button>
+                    <button>Log in</button>
+                </div>
+            </form>
+        </div>
+        :
+        <div className="LoginBox">
+            <button className="loggedIn" onClick={logOut}>Log out</button>
+        </div>;
 }

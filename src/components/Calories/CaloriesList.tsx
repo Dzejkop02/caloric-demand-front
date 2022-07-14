@@ -8,7 +8,11 @@ import './CaloriesList.css';
 import {ClearDataBtn} from "../ClearDataBtn/ClearDataBtn";
 import {UpdateDataPopup} from "../UpdateDataPopup/UpdateDataPopup";
 
-export const CaloriesList = () => {
+interface Props {
+    onSendStatus: (code: number) => void;
+}
+
+export const CaloriesList = (props: Props) => {
     const [data, setData] = useState<getDataResponse | null>(null);
     const [result, setResult] = useState<number | null>(null);
     const [overlayClass, setOverlayClass] = useState<'hidden' | ''>('hidden');
@@ -25,6 +29,7 @@ export const CaloriesList = () => {
             d = responseData;
         } else {
             const res = await fetch('http://localhost:3001/data/');
+            props.onSendStatus(res.status);
             d = await res.json() as getDataResponse;
         }
 

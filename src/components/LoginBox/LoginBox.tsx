@@ -73,6 +73,8 @@ export const LoginBox = (props: Props) => {
 
         if (data.ok) {
             props.onSetLogIn(true);
+            setUsername('');
+            setPwd('')
         }
     };
 

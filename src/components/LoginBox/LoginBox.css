@@ -1,0 +1,33 @@
+.LoginBox {
+    width: 45vw;
+    margin: 0 auto;
+}
+
+button {
+    box-sizing: border-box;
+    background-color: transparent;
+    padding: 15px 30px;
+    border: 1px solid #323130;
+    cursor: pointer;
+    color: #323130;
+    border-radius: 10px;
+    transition: 0.25s;
+    font-size: 14px;
+    width: 150px;
+}
+
+button:hover {
+    background-color: #323130;
+    border: 1px solid black;
+    color: #F9F5F0;
+}
+
+.success {
+    color: green;
+}
+
+.loggedIn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+}

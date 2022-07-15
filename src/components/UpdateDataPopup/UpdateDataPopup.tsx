@@ -23,6 +23,7 @@ export const UpdateDataPopup = (props: Props) => {
             headers: {
                 'Content-Type': 'application/json',
             },
+            credentials: 'include',
             body: JSON.stringify({
                 kcal: Number(kcal),
                 weight: Number(weight),
@@ -44,6 +45,7 @@ export const UpdateDataPopup = (props: Props) => {
     const deleteDay = async () => {
         const res = await fetch(`http://localhost:3001/data/${props.day}`, {
             method: 'DELETE',
+            credentials: 'include',
         });
 
         props.onUpdateData(await res.json());

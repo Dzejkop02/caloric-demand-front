@@ -10,6 +10,7 @@ interface Props {
 export const ClearDataBtn = (props: Props) => {
     const clearData = async () => {
         const res = await fetch('http://localhost:3001/data/', {
+            credentials: 'include',
             method: 'DELETE',
         });
 
